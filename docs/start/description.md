@@ -13,8 +13,37 @@ EnComping的程序文件后缀名称为`.ecs`或者`.ecp`，二者有略微的�
 以下是使用ECP编写的一段简单的HelloWorld程序：
 
 ```ecs
-@MainEntry
+@EntryPoint
 fun main(args: Array<String>){
   println("Hello World!")
 }
 ```
+
+其中，`@EntryPoint`是用于标记程序的入口点的一个简单注解，`println`函数的作用即向系统标准输出流打印一段文本并换行，将上文保存到HelloWorld.ecs，并在此目录下打开终端，执行如下命令：
+
+```sh
+ecp HelloWorld.ecs
+```
+
+即可看到在终端打印了一段文本：`Hello World!`
+
+#### 关于.ecs与.ecp的区别
+
+ecs，是EnComping Script的缩写，而ecp为EnComping Program的缩写。
+
+在.ecs文件中，可以直接在最顶层编写任意声明，包括变量，函数等，它们不需要被包括在任何其他程序块当中，并且可以直接被导入并访问。
+
+而.ecp文件当中顶层必须是有且只有一个程序块，它可以是组件原型声明，可以是组合类型声明，以及一些其他顶级程序块的声明，所有的程序内容都必须被包括在这个顶级程序块中，并且此程序块的名称必须和文件名相同。如果您需要使用.ecp文件中的函数作为入口点，您可以编写如下程序：
+
+```ecp
+@EntryPoint
+comp HelloWorld{
+  init{
+    println("Hello World!")
+  }
+}
+```
+
+如程序所述，如果您将`@EntryPoint`注解用于组件原型或者组合类型上，那么程序启动时即会实例化该入口，并将参数传递给其初始化函数，此处的初始化函数不携带参数，即不接收命令行参数。
+
+将该程序保存为HelloWorld.ecp并运行，将得到和上文相同的打印结果。
