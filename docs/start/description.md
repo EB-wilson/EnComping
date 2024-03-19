@@ -153,27 +153,16 @@ combine ExampleType: ExampleComp{
 
 
 | 类型 | 释义 | 示例 |
-
 | :------: | -------- | -------- |
-
 | Unit | 空类型占位 | Unit |
-
 | Byte | 8位整数 | 123 |
-
 | Short | 16位整数 | 12345 |
-
 | Int | 32位整数 | 123456789 |
-
 | Long | 64位整数 | 123456789L |
-
 | Float | 32位浮点数 | 3.1415926F |
-
 | Double | 64位浮点数 | 2.7182818 |
-
 | Boolean | 布尔值 | true |
-
 | Char | 单字符 | 'C' |
-
 | String | 字符串 | "HelloWorld" |
 
 
