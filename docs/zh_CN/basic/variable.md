@@ -9,11 +9,11 @@
 ```
 
 其中，各部分的含义：
-- modifier：特性与访问修饰符
-- var/val：此变量是可变量还是不可变量
-- variable name：变量的名称
-- Variable Type：变量类型
-- default expression：变量的初始值，一个表达式
+- `modifier`：特性与访问修饰符
+- `var/val`：此变量是可变量还是不可变量
+- `variable name`：变量的名称
+- `Variable Type`：变量类型
+- `default expression`：变量的初始值，一个表达式
 
 举例来说：
 
