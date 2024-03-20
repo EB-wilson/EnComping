@@ -99,5 +99,8 @@ comp Health(val maxHealth = 100){
 }
 ```
 
+假设我们需要设计一个组件`Motion`来提供动量来让对象移动，那么我们就会希望一个对象有`Motion`时，就应该有`Position`组件，即：`Motion`依赖`Position`，或者说是需要。
 
+转化为代码的话：
+comp Motion: Position
 
