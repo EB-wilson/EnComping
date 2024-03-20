@@ -173,7 +173,7 @@ var a: {Position, Health} = new {{ Position(0, 1), Health }}()
 通常来说，EnComping在保证语言正确的前提下，对语言的具体语法并不做强限制，但通常我们选择按照语法规范的惯例来使程序更有可读性，**规范的最终目的都是为了更简洁更容易阅读，而非信条**。
 
 - **一致的句尾分号**  
-ECP中的句尾分号是不必要的，尽管你仍可以用分号来分割语句，但我们建议完全不写句尾分号，亦或者在项目中完全采用句尾分号，以确保语法的一致性，即您应当在如下风格当中选择一种：
+  ECP中的句尾分号是不必要的，尽管你仍可以用分号来分割语句，但我们建议完全不写句尾分号，亦或者在项目中完全采用句尾分号，以确保语法的一致性，即您应当在如下风格当中选择一种：
   ```ecp
   comp Example{
     var v1 = "hello"
@@ -196,21 +196,22 @@ ECP中的句尾分号是不必要的，尽管你仍可以用分号来分割语�
   ```
 
 - **命名约定**  
-ECP中使用的命名符号规则大致与java一致，尽量使你的命名符号有意义，减少使用诸如**`s1`,`a`,`lxq`**等令人迷惑的没有经过约定的字母缩写。
-建议使用ascii编码的字符撰写命名符号，其大小写规范遵从如下表格：
-| 命名符号 | 规则 | 例子 |
-| :--- | :--- | :--- |
-| 组件名称 | UpperCamelCase | comp HelloWorld{} |
-| 组合类型名称 | UpperCamelCase | combine HelloWorld{} |
-| 包名称 | alllowercase | package example.main |
-| 常量名称 | ALL_UPPER_CASE | const val LINE_SEP = "\n" |
-| 常量名称 | ALL_UPPER_CASE | const val LINE_SEP = "\n" |
-| 函数名称 | lowerCamelCase | fun helloWorld() |
-| 枚举类型 | UpperCamelCase | enum Color{} |
-| 枚举项 | ALL_UPPER_CASE | WHITE, BLACK, GRAY |
+  ECP中使用的命名符号规则大致与java一致，尽量使你的命名符号有意义，减少使用诸如**`s1`,`a`,`lxq`**等令人迷惑的没有经过约定的字母缩写。建议使用ascii编码的字符撰写命名符号，其大小写规范遵从如下表格：
+
+  | 命名符号   | 规则             | 例子                        |
+  |:-------|:---------------|:--------------------------|
+  | 组件名称   | UpperCamelCase | comp HelloWorld{}         |
+  | 组合类型名称 | UpperCamelCase | combine HelloWorld{}      |
+  | 包名称    | alllowercase   | package example.main      |
+  | 常量名称   | ALL_UPPER_CASE | const val LINE_SEP = "\n" |
+  | 常量名称   | ALL_UPPER_CASE | const val LINE_SEP = "\n" |
+  | 函数名称   | lowerCamelCase | fun helloWorld()          |
+  | 枚举类型   | UpperCamelCase | enum Color{}              |
+  | 枚举项    | ALL_UPPER_CASE | WHITE, BLACK, GRAY        |
 
 - **流程控制**  
-在可能的情况下，建议尽可能减少分支语句的嵌套情况，例如使用`return`，`break`和`continue`来减少分支语句的嵌套次数，因为过多的嵌套会使得程序变得难以阅读。减少嵌套次数，例如：
+
+  在可能的情况下，建议尽可能减少分支语句的嵌套情况，例如使用`return`，`break`和`continue`来减少分支语句的嵌套次数，因为过多的嵌套会使得程序变得难以阅读。减少嵌套次数，例如：
   ```ecs
   fun foo(){
     if(a){
@@ -221,7 +222,8 @@ ECP中使用的命名符号规则大致与java一致，尽量使你的命名符�
     }
   }
   ```
-可以反转最外层if语句为：
+  
+  可以反转最外层if语句为：
   ```ecs
   fun foo(){
     if(!a)return
@@ -234,4 +236,4 @@ ECP中使用的命名符号规则大致与java一致，尽量使你的命名符�
   ```
 
 - **缩进**  
-程序的缩进长度应当保持一致（普通缩进，连续缩进等），具体长度不做限制，但建议长度至少是2个空格长度的整倍数，且不应当大于8个空格长度，例如您不应当使用3个空格长度进行缩进或者用长达16个空格长度的缩进。本文所有的演示代码均为2空格长度缩进。
+  程序的缩进长度应当保持一致（普通缩进，连续缩进等），具体长度不做限制，但建议长度至少是2个空格长度的整倍数，且不应当大于8个空格长度，例如您不应当使用3个空格长度进行缩进或者用长达16个空格长度的缩进。本文所有的演示代码均为2空格长度缩进。
