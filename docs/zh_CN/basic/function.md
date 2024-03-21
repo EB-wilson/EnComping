@@ -5,14 +5,13 @@
 一个函数的定义格式如下所示：
 
 ```ecs
-[modifiers]fun <Type Args Block>([arguments])[:Return Type][{body}]
+[modifiers]fun <Type Arguments>([arguments])[:Return Type][{body}]
 ```
 
 其中：
 
 - `modifiers`：函数的访问或者特性修饰符
-- `Type Args Block`：函数的类型参数块
-  > 类型参数块与常见的泛型用途并不一致，在ECP中泛型是基于类型表达式的，请参阅章节 _类型表达式_
+- `Type Arguments`：函数的类型参数
 - `arguments`：函数的参数列表
 - `Return Type`：函数的返回值类型
 - `body`：函数的主体代码块
