@@ -28,6 +28,7 @@ graph TD;
     A-->D;
     B-->E;
     B-->F;
+    B-->G;
     C-->F;
     C-->H;
     D-->I;
