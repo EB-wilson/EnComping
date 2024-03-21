@@ -28,7 +28,7 @@ comp C: F, H
 comp D: I
 comp E
 comp F
-comp G
+comp G: J
 comp H
 comp I: J, K
 comp J
@@ -48,6 +48,7 @@ graph TD;
     C-->F;
     C-->H;
     D-->I;
+    G-->J;
     I-->J;
     I-->K;
 ```
