@@ -83,7 +83,7 @@ default init{
 ECP依赖类型继承来实现代码复用，代替继承的是组件间的**包含（Contains）**，具体来说包含表达的是一种对于组件的依赖，或者说要求关系。譬如有如下几个组件：
 
 ```ecs
-comp Position(var x = 0, var y = 0){
+comp Position(var x: Int, var y: Int){
   fun move(dx: Int, dy: Int){
     x += dx
     y += dy
@@ -102,5 +102,58 @@ comp Health(val maxHealth = 100){
 假设我们需要设计一个组件`Motion`来提供动量来让对象移动，那么我们就会希望一个对象有`Motion`时，就应该有`Position`组件，即：`Motion`依赖`Position`，或者说是需要。
 
 转化为代码的话：
-comp Motion: Position
+
+```ecp
+comp Motion(var velX = 0, var velY = 0): Position{
+  fun updatePos(){
+    move(velX, velY)
+  }
+}
+
+comp Entity(val id: Int): Motion(), Health(){
+  ...
+}
+```
+
+组件`Motion`当中包含了一个组件`Position`，表明Motion对Position的依赖，当Motion包含了Position时，在其中就可以访问来自Position的属性和函数，例如在上述程序中就直接使用了来自Position的函数`move(dx: Int, dy: Int)`。
+
+需要强调，在ECP中的组件和组件之间**只有依赖关系**，所有组件的结构是平级的，包含的所有组件会在组合当中会进行拍扁，请参阅章节 *组合*。
+
+### 结构内调用初始化函数
+
+在一个组合结构当中，无论使用哪一个初始化函数的重载来构造实例，其包含的所有组件都应当被调用过至少一个初始化函数。
+
+观察前文的包含组件列表，ECP约定在包含列表中，对任意组件的包含在使用括弧`(args)`时，尽管可能并未传入任何参数，此语句表示在初始化时传递的调用那个组件的此初始化函数，若没有使用括弧，那么表示对此组件的初始化函数调用为**待定**。
+
+特别的，如果组件只含有无参数初始化函数，那么不带有括弧参数的组件列表引用的会被视为调用那个唯一的无参数初始化函数，而非待定。
+
+我们提到过`init`块被用于设置初始化函数，如果一个组件的初始化函数调用是待定的，那么在包含它的结构中必须在任何init分支中都至少调用了一个初始化函数。包含的结构不一定是直接包含它的组件，在包含此组件的任意结构当中只要声明了对初始化函数的调用即可。
+
+在初始化函数中，对包含的组件调用初始化函数的语法如下：
+
+```ecs
+init{
+  this:<Component Name>([arguments])
+}
+```
+
+**上述的语句只能在初始化函数中使用**。
+
+待定初始化的组件应当在其它层级中调用初始化函数，以上述的`Motion`对`Position`的依赖为例，它的初始化函数调用是待定的，而`Entity`又包含了`Motion`，进而包含了待定调用的`Position`，即仍可以在对它的包含中确定初始化：
+
+```ecp
+comp CombinedEntity: Entity{
+  init(id: Int){
+    this:Entity(id)
+    this:Position(0, 0)
+  }
+
+  init(id: Int, x: Int, y: Int){
+    this:Entity(id)
+    this:Position(0, 0)
+  }
+}
+```
+
+注意，无论构造对象时使用了哪一个初始化函数，所有组件都应该被**至少调用一个**初始化函数，例如上述代码中，两个初始化函数均调用了所有仍然待定组件的初始化函数，如果您没有在组件声明中完成对初始化函数的待定分配，那么在将它们组合起来时必须在组合中正确分配调用，否则组合就是非法的。
 
