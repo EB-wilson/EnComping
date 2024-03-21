@@ -7,13 +7,12 @@
 在ECP中，组件就是一个个被声明的集合，它由关键字`comp`声明，包含一系列的属性和函数，并携带一些访问与特性修饰符，以及其包含的组件列表，组件的声明格式如下：
 
 ```ecs
-[modifiers] comp <ComponentName>[<Type Args Block>][:Contains Components]{body}
+[modifiers] comp <ComponentName>[<Type Arguments>][:Contains Components]{body}
 ```
 
 - `modifiers`：组件的访问与特性修饰符
 - `ComponentName`：此组件的名称
-- `Type Args Block`：此组件的类型参数块
-  > 类型参数块与常见的泛型用途并不一致，在ECP中泛型是基于类型表达式的，请参阅章节 _类型表达式_
+- `Type Arguments`：此组件的类型参数
 - `Contains Components`：此组件包含的组件列表
 - `body`：此组件包含的属性和函数
 
