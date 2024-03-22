@@ -41,5 +41,18 @@
   ```
 
 - `private`：私有的，本组件内部成员，不可从组件之外任何位置访问
+  ```ecp
+  comp Example{
+    private fun foo(){
+      println("invoke")
+    }
+  }
+  
+  comp Foo: Example{
+    fun foo(){
+      this:Example.foo() // 编译错误，无法访问到私有成员
+    }
+  }
+  ```
 
   
