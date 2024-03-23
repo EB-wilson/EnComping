@@ -206,6 +206,7 @@ var a: {Position, Health} = new {{ Position(0, 1), Health }}()
   | 组合类型名称 | UpperCamelCase | combine HelloWorld{}      |
   | 包名称    | alllowercase   | package example.main      |
   | 常量名称   | ALL_UPPER_CASE | const val LINE_SEP = "\n" |
+  | 变量名称   | lowerCamelCase | var helloWorld = "hello world"         |
   | 函数名称   | lowerCamelCase | fun helloWorld()          |
   | 枚举类型   | UpperCamelCase | enum Color{}              |
   | 枚举项    | ALL_UPPER_CASE | WHITE, BLACK, GRAY        |
