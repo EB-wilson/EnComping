@@ -11,11 +11,11 @@ docs.forEach { dir ->
     ?.apply {
       val tree = readIndex(this)
       val files = dir.listFiles()!!
-      extracted(tree, files)
+      setFileName(tree, files)
     }
 }
 
-fun extracted(tree: Indexer.TreeNode, files: Array<File>, prefix: String = "") {
+fun setFileName(tree: Indexer.TreeNode, files: Array<File>, prefix: String = "") {
   tree.children.forEachIndexed { index, node ->
     val file = files.find { (if (it.isFile) it.nameWithoutExtension else it.name).run {
       replace(node.name, "").length == indexOf(node.name)
@@ -29,7 +29,7 @@ fun extracted(tree: Indexer.TreeNode, files: Array<File>, prefix: String = "") {
       ))
 
       if (isDirectory) {
-        extracted(node, listFiles(), "$prefix${index + 1}.")
+        setFileName(node, listFiles(), "$prefix${index + 1}.")
       }
     }
   }
